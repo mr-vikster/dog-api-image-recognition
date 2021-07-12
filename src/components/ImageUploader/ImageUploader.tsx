@@ -21,6 +21,7 @@ export const ImageUploader: FC = () =>  {
   
   const identify = useCallback(async () => {
     const img = imageRef.current;
+    console.log(img);
     const results = await model.classify(img);
     setResults(results);
     setBreed(results[0].className);
@@ -43,7 +44,7 @@ export const ImageUploader: FC = () =>  {
   }
   
   useEffect(() => {
-    if(imageURL && imageRef.current && imageRef.current.offsetHeight > 0) {
+    if(imageURL && imageRef.current) {
       identify();
       requestGallery();
     }
@@ -58,7 +59,7 @@ export const ImageUploader: FC = () =>  {
       <div className="app__image-wrapper">
         {imageURL && (
           <figure>
-            <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous" ref={imageRef} />
+            <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous" ref={imageRef} style={{ minHeight: 500, minWidth: 375 }} />
             <figcaption><Classification/></figcaption>
           </figure>
         )}

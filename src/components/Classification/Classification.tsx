@@ -14,7 +14,8 @@ export const Classification = () =>  {
           return (
             <div className='classification__result' key={result.className}>
               <span className='result__name'>{result.className}</span>
-              <span className='result__confidence'>Confidence level: {(result.probability * 100).toFixed(2)}% {index === 0 && <span className='result__best-guess'>Best Guess</span>}</span>
+              <span className='result__confidence'>{(result.probability * 100).toFixed(2)} %</span>
+              {index === 0 && <span className='result__best-guess'>Best Guess</span>}
             </div>
           )
           })}

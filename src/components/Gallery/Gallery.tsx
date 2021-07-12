@@ -21,17 +21,15 @@ export const Gallery: FC = () => {
   return (
     <>
       {galleryItems.length > 0 && (
-        <>
-          <h3>See the best {breed}s around</h3>
-          <div className='gallery__wrapper'>
+        <div className='gallery__wrapper'>
+          <h2 className="gallery__title">See the best {breed}s around</h2>
+          <div className='gallery__results'>
             {galleryItems.map((image: string, index: number) => (
-              <div className='gallery__result' key={index}>
-                <img src={image} alt={breed} />
-              </div>
+              <div className='gallery__result' key={index} style={{ backgroundImage: `url(${image})` }}/>
             ))}
-            <button className="gallery__show-more" ref={loaderRef} onClick={loadMoreImages}>Show More</button>
           </div>
-        </>
+          <button className="gallery__show-more" ref={loaderRef} onClick={loadMoreImages}>Show More</button>
+        </div>
       )}
     </>
   )
