@@ -1,6 +1,7 @@
 import { FC, useCallback, useContext } from 'react';
-import { GalleryContext } from '../../contexts/galleryContext';
+
 import { useOnScreen } from '../../hooks/useOnScreen';
+import { GalleryContext } from '../../contexts/galleryContext';
 
 export const Gallery: FC = () => {
 
@@ -19,18 +20,16 @@ export const Gallery: FC = () => {
 
 
   return (
-    <>
-      {galleryItems.length > 0 && (
-        <div className='gallery__wrapper'>
-          <h2 className="gallery__title">See the best {breed}s around</h2>
-          <div className='gallery__results'>
-            {galleryItems.map((image: string, index: number) => (
-              <div className='gallery__result' key={index} style={{ backgroundImage: `url(${image})` }}/>
-            ))}
-          </div>
-          <button className="gallery__show-more" ref={loaderRef} onClick={loadMoreImages}>Show More</button>
-        </div>
-      )}
-    </>
+    galleryItems.length > 0 ? (
+      <article className="gallery__content-wrapper">
+        <h2 className="gallery__heading">See the best {breed}s around</h2>
+        <section className="gallery__results-wrapper">
+          {galleryItems.map((image: string, index: number) => (
+            <div className='gallery__result' key={index} style={{ backgroundImage: `url(${image})` }}/>
+          ))}
+        </section>
+        <button className="gallery__show-more" ref={loaderRef} onClick={loadMoreImages}>Show More</button>
+      </article>
+    ) : null
   )
 }

@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useRef, FC, useEffect, useCallback } from 'react';
+
 import { GalleryContext } from '../../contexts/galleryContext';
 import { Classification } from '../Classification/Classification';
 
@@ -51,19 +52,19 @@ export const ImageUploader: FC = () =>  {
   }, [imageURL]);
   
   return (
-    <div className='uploader__wrapper'>
-      <div className='input__wrapper'>
-        <input type='file' accept='image/*' capture='camera' className='input__upload-input' style={{ display: 'none' }} onChange={uploadImage} ref={fileInputRef} />
+    <article className="preview__wrapper">
+      <div className='preview__input-wrapper'>
+        <input type='file' accept='image/*' capture='camera' style={{ display: 'none' }} onChange={uploadImage} ref={fileInputRef} />
         <button className='input__upload-button' onClick={triggerUpload}>Upload Image</button>
       </div>
-      <div className="app__image-wrapper">
-        {imageURL && (
-          <figure>
-            <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous" ref={imageRef} style={{ minHeight: 500, minWidth: 375 }} />
-            <figcaption><Classification/></figcaption>
-          </figure>
-        )}
-      </div>
-    </div>
+      {imageURL && (
+        <section className="preview__content-wrapper">
+          <section className="preview__image-wrapper">
+            <img src={imageURL} alt="Upload Preview" crossOrigin="anonymous" ref={imageRef} />
+          </section>
+          <Classification/>
+        </section>
+      )}
+    </article>
   )
 }

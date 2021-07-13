@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 
-import './App.css';
 import { GalleryContext } from '../contexts/galleryContext';
 import { Gallery } from './Gallery/Gallery';
 import { ImageUploader } from './ImageUploader/ImageUploader';
 import { ScrollArrow } from './ScrollArrow/ScrollArrow';
+import './App.css';
 
 function App() {
   const { isModelLoading } = useContext(GalleryContext);
@@ -15,12 +15,12 @@ function App() {
 
   return (
     <>
-      <h1 className="app__heading">Dog Finder</h1>
-      <div className="content__wrapper">
+      <main className="app__content-wrapper">
+        <h1 className="heading">Dog Finder</h1>
         <ImageUploader />
-        <Gallery/>
-      </div>
-      <ScrollArrow />
+        <Gallery />
+        <ScrollArrow />
+      </main>
     </>
   );
 }
