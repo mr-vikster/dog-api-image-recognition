@@ -10,7 +10,7 @@ function App() {
   const { isModelLoading } = useContext(GalleryContext);
 
   if (isModelLoading) {
-    return <h2 className="app__loader">Model Loading...</h2>
+    return <h2 className="app__loader">Loading mobilenet Model...</h2>
   }
 
   return (
