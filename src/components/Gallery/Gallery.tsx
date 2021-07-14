@@ -1,23 +1,23 @@
-import { FC, useCallback, useContext } from 'react';
+import { FC, useCallback, useContext, useEffect } from 'react';
 
 import { useOnScreen } from '../../hooks/useOnScreen';
 import { GalleryContext } from '../../contexts/galleryContext';
 
 export const Gallery: FC = () => {
 
-  const { galleryItems, getImages, breed } = useContext(GalleryContext);
-  const [loaderRef] = useOnScreen<HTMLButtonElement>();
+  const { galleryItems, getImages, breed, formatBreedName } = useContext(GalleryContext);
+  const [loaderRef, visibility] = useOnScreen<HTMLButtonElement>({ rootMargin: '150px' });
 
   const loadMoreImages = useCallback(() => {
-    getImages(breed.split(' ').reverse().join('/').toLowerCase())
-  }, [breed, getImages])
-  // TODO:add autoloading
-  // useEffect(() => {
-  //   if(visibility > 0 && breed && !isGalleryLoading) {
-  //     loadMoreImages();
-  //   }
-  // }, [breed, loadMoreImages, visibility, isGalleryLoading]);
+    const formattedBreedName = formatBreedName(); 
+    getImages(formattedBreedName)
+  }, [formatBreedName, getImages]);
 
+  useEffect(() => {
+    if(visibility > 0) {
+      loadMoreImages();
+    }
+  }, [loadMoreImages, visibility]);
 
   return (
     galleryItems.length > 0 ? (

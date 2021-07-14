@@ -10,7 +10,7 @@ describe('App test suite', () => {
     const pageHeading = screen.getByText(/dog finder/i);
     expect(pageHeading).toBeInTheDocument();
   });
-  it('renders palceholder text when model is loading', () => {
+  it('renders placeholder text when model is loading', () => {
     const user = { isModelLoading: true };
     render(
       <GalleryContext.Provider value={user}>
