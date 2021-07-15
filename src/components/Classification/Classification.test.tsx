@@ -12,7 +12,6 @@ describe('Classification test suite', () => {
         <Classification />
       </GalleryContext.Provider>
     );
-    screen.debug();
     expect(screen.getByText('dog')).toBeInTheDocument();
     expect(screen.getByText('Best Guess')).toBeInTheDocument();
   });

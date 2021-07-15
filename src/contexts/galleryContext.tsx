@@ -17,7 +17,9 @@ const defaultContext: any = {
   getImages: () => null,
   breed: null,
   setBreed: () => null,
-  formatBreedName: () => null
+  formatBreedName: () => null,
+  requestError: null,
+  setRequestError: () => null
 };
 
 export interface ModelResult {
@@ -36,6 +38,7 @@ export const GalleryContextProvider: FC = ({ children }) => {
   const [imageURL, setImageURL] = useState<string|null>(null);
   const [results, setResults] = useState<ModelResult[]>([]);
   const [galleryItems, setGalleryItems] = useState<ModelResult[]>([]);
+  const [requestError, setRequestError] = useState(null);
   
   const loadModel = async () => {
     setIsModelLoading(true);
@@ -57,13 +60,19 @@ export const GalleryContextProvider: FC = ({ children }) => {
     setIsGalleryLoading(true);
     fetch(`https://dog.ceo/api/breed/${formattedBreedName}/images/random/10`)
     .then((res) => res.json())
-    .then((data) => setGalleryItems((prevState) => {
-      if(!prevState) {
-        return data.message
+    .then((data) => {
+      if(data.status === 'error') {
+        setRequestError(data);
       } else {
-        return prevState.concat(data.message)
+        setGalleryItems((prevState) => {
+          if(!prevState) {
+            return data.message
+          } else {
+            return prevState.concat(data.message)
+          }
+        })
       }
-    }))
+    })
     .catch((error) => {
       console.log(error);
     })
@@ -95,7 +104,9 @@ export const GalleryContextProvider: FC = ({ children }) => {
         galleryItems,
         setGalleryItems,
         getImages,
-        formatBreedName
+        formatBreedName,
+        requestError,
+        setRequestError
       }}
     >
       {children}

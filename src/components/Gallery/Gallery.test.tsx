@@ -33,7 +33,6 @@ describe('Gallery test suite', () => {
         <Gallery />
       </GalleryContext.Provider>
     );
-    screen.debug();
     expect(screen.getByText('See the best Good boys around', { exact: false })).toBeInTheDocument();
     expect(screen.getByText('Show More')).toBeInTheDocument();
   });

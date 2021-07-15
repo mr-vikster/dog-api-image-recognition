@@ -1,6 +1,18 @@
-# dog-api-image-recognition
+# Dog photo gallery based on recognized breed DB from Dog CEO API
 
-Image recognition based on a pre-trained model. Given a photo of a dog classify it's breed and show a gallery of dogs of the same breed using Dog CEO API
+Image recognition based on a pre-trained model. Given a photo of a dog classify its breed and show a gallery of dogs of the same breed using Dog CEO API
+
+## Build notes
+
+Application was bootstrapped with create-react-app so all the default start/build/test/eject actions apply here
+
+## Quick walkthrough
+
+I wanted to limit the amount of libraries I rely upon so there are no other dependencies besides the testing-library/react/typescript bundle that's shipped with CRA and the tensorflow for image recognition.
+I've added unit tests using testing-library that cover the general rendering expectations.
+State management is done using context API which fits this scale and doesn't require dependencies.
+Styling is done using generic CSS as in my opinion the scale didn't justify styled-components, scss or Material UI's useStyles hook.
+There's one custom hook that helps handling infinite scroll. It's not perfect but it does the job.
 
 ## Getting Started with Create React App
 
@@ -42,9 +54,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

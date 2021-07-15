@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { GalleryContext } from '../contexts/galleryContext';
 import { Gallery } from './Gallery/Gallery';
-import { ImageUploader } from './ImageUploader/ImageUploader';
+import { Uploader } from './Uploader/Uploader';
 import { ScrollArrow } from './ScrollArrow/ScrollArrow';
 import './App.css';
 
@@ -17,7 +17,7 @@ function App() {
     <>
       <main className="app__content-wrapper">
         <h1 className="heading">Dog Finder</h1>
-        <ImageUploader />
+        <Uploader />
         <Gallery />
         <ScrollArrow />
       </main>

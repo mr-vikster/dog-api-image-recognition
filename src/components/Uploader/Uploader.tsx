@@ -3,7 +3,7 @@ import { ChangeEvent, useContext, useRef, FC, useCallback, useEffect } from 'rea
 import { GalleryContext } from '../../contexts/galleryContext';
 import { Classification } from '../Classification/Classification';
 
-export const ImageUploader: FC = () =>  {
+export const Uploader: FC = () =>  {
 
   const { 
     setResults,
@@ -14,15 +14,17 @@ export const ImageUploader: FC = () =>  {
     getImages,
     formatBreedName,
     breed,
-    setGalleryItems
+    setGalleryItems,
+    setRequestError
   } = useContext(GalleryContext);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
   const uploadImage = (e: ChangeEvent<HTMLInputElement>) => {
-    setResults([])
-    setGalleryItems([])
+    setRequestError(null);
+    setResults([]);
+    setGalleryItems([]);
     const { files } = e.target;
     if (files && files.length > 0) {
       const url = URL.createObjectURL(files[0]);
