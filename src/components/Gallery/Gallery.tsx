@@ -32,7 +32,7 @@ export const Gallery: FC = () => {
                   <div className='gallery__result' key={index} style={{ backgroundImage: `url(${image})` }}/>
                 ))}
               </section>
-              <button className="gallery__show-more" ref={loaderRef} >Show More</button>
+              <button className="gallery__show-more" ref={loaderRef} onClick={loadMoreImages}>Show More</button>
             </>
           )
       )}
