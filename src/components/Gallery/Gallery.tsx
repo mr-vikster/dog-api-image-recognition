@@ -9,7 +9,7 @@ export const Gallery: FC = () => {
   const [loaderRef, visibility] = useOnScreen<HTMLButtonElement>({ rootMargin: '150px' });
 
   const loadMoreImages = useCallback(() => {
-    const formattedBreedName = formatBreedName(); 
+    const formattedBreedName = formatBreedName();
     getImages(formattedBreedName)
   }, [formatBreedName, getImages]);
 
@@ -24,7 +24,7 @@ export const Gallery: FC = () => {
       {requestError ? (
         <p className="gallery__error-message">Sorry, we couldn't recognize this breed. Please try again with another photo.</p>
         ) : (
-          galleryItems.length > 0 && (
+          galleryItems.length > 0 ? (
             <>
               <h2 className="gallery__heading">See the best {breed}s around</h2>
               <section className="gallery__results-wrapper">
@@ -34,7 +34,7 @@ export const Gallery: FC = () => {
               </section>
               <button className="gallery__show-more" ref={loaderRef} onClick={loadMoreImages}>Show More</button>
             </>
-          )
+          ) : null
       )}
     </article>
   )

@@ -4,7 +4,7 @@ import {
   useCallback,
   MutableRefObject,
   useState
-} from 'react'
+} from 'react';
 
 const defaultIntersectionObserverInit: IntersectionObserverInit = {
   root: null,
@@ -14,13 +14,15 @@ const defaultIntersectionObserverInit: IntersectionObserverInit = {
 export const useOnScreen = <T extends Element, V = number>(
   option: Partial<IntersectionObserverInit> = {}
 ): [MutableRefObject<T | null>, V | number] => {
-  const targetRef = useRef<T | null>(null)
-  const observerRef = useRef<IntersectionObserver | null>(null)
-  const [visibilityRatio, setVisibilityRatio] = useState<number>(0)
+  const targetRef = useRef<T | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const [visibilityRatio, setVisibilityRatio] = useState<number>(0);
   const observerCallback: IntersectionObserverCallback = useCallback(
     (entries: IntersectionObserverEntry[]) => {
-      setVisibilityRatio(entries[0].intersectionRatio)
-    },[])
+      console.log(entries);
+      
+      setVisibilityRatio(entries[0].intersectionRatio);
+  },[]);
 
   useEffect(() => {
     if (observerRef.current) return
@@ -29,8 +31,8 @@ export const useOnScreen = <T extends Element, V = number>(
       ...defaultIntersectionObserverInit,
       ...option
     })
-    observerRef.current.observe(targetRef.current)
+    observerRef.current.observe(targetRef.current);
   })
 
-  return [targetRef, visibilityRatio]
+  return [targetRef, visibilityRatio];
 }
